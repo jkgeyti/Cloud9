@@ -105,7 +105,8 @@ public class ClueWarcForwardIndex implements DocumentForwardIndex<ClueWarcRecord
 
     try {
       SequenceFile.Reader reader =
-          new SequenceFile.Reader(conf, SequenceFile.Reader.file(new Path(file)));
+          //new SequenceFile.Reader(conf, SequenceFile.Reader.file(new Path(file)));
+              new SequenceFile.Reader(FileSystem.get(conf), new Path(file), conf); //Author JKG
 
       IntWritable key = new IntWritable();
       ClueWarcRecord value = new ClueWarcRecord();
@@ -164,8 +165,10 @@ public class ClueWarcForwardIndex implements DocumentForwardIndex<ClueWarcRecord
     String file = collectionPath + "/part-" + FORMAT5.format(fileno[idx]);
 
     try {
-      SequenceFile.Reader reader = new SequenceFile.Reader(conf,
-          SequenceFile.Reader.file(new Path(file)));
+      SequenceFile.Reader reader =
+              //new SequenceFile.Reader(conf, SequenceFile.Reader.file(new Path(file)));
+              new SequenceFile.Reader (FileSystem.get(conf), new Path(file), conf); //Author JKG
+
       IntWritable key = new IntWritable();
 
       reader.seek(offsets[idx]);

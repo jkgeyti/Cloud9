@@ -107,7 +107,7 @@ public class FindNodeAtDistance extends Configured implements Tool {
     LOG.info(" - outputDir: " + outputPath);
     LOG.info(" - distance: " + distance);
 
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJobName(String.format("FindNodeAtDistance[%s: %s, %s: %s, %s: %d]",
         INPUT_OPTION, inputPath, OUTPUT_OPTION, outputPath, DISTANCE_OPTION, distance));
     job.setJarByClass(FindNodeAtDistance.class);

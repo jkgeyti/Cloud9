@@ -138,7 +138,7 @@ public class EncodeBfsGraph extends Configured implements Tool {
     LOG.info(" - outputDir: " + outputPath);
     LOG.info(" - src: " + src);
 
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJobName(String.format("EncodeBfsGraph[%s: %s, %s: %s, %s: %d]",
         INPUT_OPTION, inputPath, OUTPUT_OPTION, outputPath, SRC_OPTION, src));
     job.setJarByClass(EncodeBfsGraph.class);

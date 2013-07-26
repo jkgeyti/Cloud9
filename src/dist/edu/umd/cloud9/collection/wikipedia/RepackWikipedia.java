@@ -152,7 +152,7 @@ public class RepackWikipedia extends Configured implements Tool {
     // this is the default block size
     int blocksize = 1000000;
 
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJarByClass(RepackWikipedia.class);
     job.setJobName(String.format("RepackWikipedia[%s: %s, %s: %s, %s: %s, %s: %s]",
         INPUT_OPTION, inputPath, OUTPUT_OPTION, outputPath, COMPRESSION_TYPE_OPTION,

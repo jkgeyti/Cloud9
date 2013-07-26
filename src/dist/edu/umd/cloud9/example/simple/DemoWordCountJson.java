@@ -152,7 +152,7 @@ public class DemoWordCountJson extends Configured implements Tool {
     LOG.info(" - number of reducers: " + numReduceTasks);
 
     Configuration conf = getConf();
-    Job job = Job.getInstance(conf);
+    Job job = new Job(conf);
     job.setJobName(DemoWordCountJson.class.getSimpleName());
     job.setJarByClass(DemoWordCountJson.class);
     job.setNumReduceTasks(numReduceTasks);

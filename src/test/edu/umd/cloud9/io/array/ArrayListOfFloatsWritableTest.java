@@ -48,9 +48,13 @@ public class ArrayListOfFloatsWritableTest {
     FileSystem.get(conf).delete(tmp, true);
 
     try {
-      w = SequenceFile.createWriter(conf, SequenceFile.Writer.file(tmp),
+      /*w = SequenceFile.createWriter(conf, SequenceFile.Writer.file(tmp),
           SequenceFile.Writer.keyClass(IntWritable.class),
-          SequenceFile.Writer.valueClass(ArrayListOfFloatsWritable.class));
+          SequenceFile.Writer.valueClass(ArrayListOfFloatsWritable.class));*/
+
+      w = SequenceFile.createWriter(FileSystem.get(conf), conf,
+                tmp, IntWritable.class, ArrayListOfFloatsWritable.class); //Author JKG
+
       w.append(new IntWritable(1), arr);
       w.close();
     } catch (IOException e) {

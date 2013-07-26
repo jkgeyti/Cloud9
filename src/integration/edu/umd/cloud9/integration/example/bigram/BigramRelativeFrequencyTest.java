@@ -47,8 +47,10 @@ public class BigramRelativeFrequencyTest {
 
     IntegrationUtils.exec(Joiner.on(" ").join(args));
 
-    SequenceFile.Reader reader = new SequenceFile.Reader(conf,
-        SequenceFile.Reader.file(new Path(tmpPrefix + "-base/part-r-00000")));
+    /*SequenceFile.Reader reader = new SequenceFile.Reader(conf,
+        SequenceFile.Reader.file(new Path(tmpPrefix + "-base/part-r-00000")));*/
+
+    SequenceFile.Reader reader = new SequenceFile.Reader(fs, new Path(tmpPrefix + "-base/part-r-00000"), conf); //Author JKG
 
     PairOfStrings pair = new PairOfStrings();
     FloatWritable f = new FloatWritable();
@@ -90,8 +92,10 @@ public class BigramRelativeFrequencyTest {
 
     IntegrationUtils.exec(Joiner.on(" ").join(args));
 
-    SequenceFile.Reader reader = new SequenceFile.Reader(conf,
-        SequenceFile.Reader.file(new Path(tmpPrefix + "-json/part-r-00000")));
+    /*SequenceFile.Reader reader = new SequenceFile.Reader(conf,
+        SequenceFile.Reader.file(new Path(tmpPrefix + "-json/part-r-00000")));*/
+
+    SequenceFile.Reader reader = new SequenceFile.Reader(fs, new Path(tmpPrefix + "-json/part-r-00000"), conf); //Author JKG
 
     BigramRelativeFrequencyJson.MyTuple json = new BigramRelativeFrequencyJson.MyTuple();
     FloatWritable f = new FloatWritable();
@@ -133,8 +137,9 @@ public class BigramRelativeFrequencyTest {
 
     IntegrationUtils.exec(Joiner.on(" ").join(args));
 
-    SequenceFile.Reader reader = new SequenceFile.Reader(conf,
-        SequenceFile.Reader.file(new Path(tmpPrefix + "-tuple/part-r-00000")));
+    /*SequenceFile.Reader reader = new SequenceFile.Reader(conf,
+        SequenceFile.Reader.file(new Path(tmpPrefix + "-tuple/part-r-00000")));*/
+    SequenceFile.Reader reader = new SequenceFile.Reader(fs, new Path(tmpPrefix + "-tuple/part-r-00000"), conf); //Author JKG
 
     Tuple tuple = TUPLE_FACTORY.newTuple();
     FloatWritable f = new FloatWritable();

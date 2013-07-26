@@ -88,7 +88,7 @@ public class DumpPageRankRecordsToPlainText extends Configured implements Tool {
     Configuration conf = new Configuration();
     conf.setInt("mapred.min.split.size", 1024 * 1024 * 1024);
 
-    Job job = Job.getInstance(conf);
+    Job job = new Job(conf);
     job.setJobName(DumpPageRankRecordsToPlainText.class.getSimpleName());
     job.setJarByClass(DumpPageRankRecordsToPlainText.class);
 

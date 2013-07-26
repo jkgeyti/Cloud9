@@ -94,7 +94,7 @@ public class FindReachableNodes extends Configured implements Tool {
     LOG.info(" - inputDir: " + inputPath);
     LOG.info(" - outputDir: " + outputPath);
 
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJobName(String.format("FindReachableNodes:[%s: %s, %s: %s]", INPUT_OPTION,
         inputPath, OUTPUT_OPTION, outputPath));
     job.setJarByClass(FindReachableNodes.class);

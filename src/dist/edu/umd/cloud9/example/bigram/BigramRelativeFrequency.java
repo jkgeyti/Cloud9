@@ -185,7 +185,7 @@ public class BigramRelativeFrequency extends Configured implements Tool {
     LOG.info(" - output path: " + outputPath);
     LOG.info(" - num reducers: " + reduceTasks);
 
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJobName(BigramRelativeFrequency.class.getSimpleName());
     job.setJarByClass(BigramRelativeFrequency.class);
 

@@ -130,7 +130,8 @@ public class RepackTrecWebCollection extends Configured implements Tool {
 
     Path collectionPath = new Path(collection);
     for (FileStatus status : fs.listStatus(collectionPath)) {
-      if ( status.isDirectory()) {
+      //if ( status.isDirectory()) {
+        if ( status.isDir()) { //Author JKG
         for (FileStatus s : fs.listStatus(status.getPath())) {
           FileInputFormat.addInputPath(job, s.getPath());
         }

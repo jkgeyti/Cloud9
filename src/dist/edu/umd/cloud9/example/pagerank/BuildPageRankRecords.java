@@ -157,7 +157,7 @@ public class BuildPageRankRecords extends Configured implements Tool {
     conf.setInt(NODE_CNT_FIELD, n);
     conf.setInt("mapred.min.split.size", 1024 * 1024 * 1024);
 
-    Job job = Job.getInstance(conf);
+    Job job = new Job(conf);
     job.setJobName(BuildPageRankRecords.class.getSimpleName() + ":" + inputPath);
     job.setJarByClass(BuildPageRankRecords.class);
 

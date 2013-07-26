@@ -133,7 +133,7 @@ public class DumpWikipediaToPlainText extends Configured implements Tool {
     LOG.info(" - output path: " + outputPath);
     LOG.info(" - language: " + language);
 
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJarByClass(DumpWikipediaToPlainText.class);
     job.setJobName(String.format("DumpWikipediaToPlainText[%s: %s, %s: %s, %s: %s]", INPUT_OPTION,
         inputPath, OUTPUT_OPTION, outputPath, LANGUAGE_OPTION, language));

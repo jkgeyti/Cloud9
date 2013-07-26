@@ -59,9 +59,13 @@ public class ArrayListOfIntsWritableTest {
     FileSystem.get(conf).delete(tmp, true);
 
     try {
-      w = SequenceFile.createWriter(conf, SequenceFile.Writer.file(tmp),
+      /*w = SequenceFile.createWriter(conf, SequenceFile.Writer.file(tmp),
           SequenceFile.Writer.keyClass(IntWritable.class),
-          SequenceFile.Writer.valueClass(ArrayListOfIntsWritable.class));
+          SequenceFile.Writer.valueClass(ArrayListOfIntsWritable.class));*/
+
+      w = SequenceFile.createWriter(FileSystem.get(conf), conf,
+                new Path("tmp"), IntWritable.class, ArrayListOfFloatsWritable.class); //Author JKG
+
       w.append(new IntWritable(1), arr);
       w.close();
     } catch (IOException e) {
@@ -184,9 +188,11 @@ public class ArrayListOfIntsWritableTest {
     Configuration conf = new Configuration();
 
     try {
-      w = SequenceFile.createWriter(conf, SequenceFile.Writer.file(new Path("tmp")),
+      /*w = SequenceFile.createWriter(conf, SequenceFile.Writer.file(new Path("tmp")),
           SequenceFile.Writer.keyClass(ArrayListOfIntsWritable.class),
-          SequenceFile.Writer.valueClass(IntWritable.class));
+          SequenceFile.Writer.valueClass(IntWritable.class));*/
+      w = SequenceFile.createWriter(FileSystem.get(conf), conf,
+                new Path("tmp"), IntWritable.class, ArrayListOfFloatsWritable.class); //Author JKG
       w.append(a1, new IntWritable(1));
       w.append(a2, new IntWritable(2));
       w.append(a3, new IntWritable(3));
@@ -197,7 +203,8 @@ public class ArrayListOfIntsWritableTest {
     }
 
     try {
-      SequenceFile.Reader reader = new SequenceFile.Reader(conf, SequenceFile.Reader.file(new Path("tmp")));
+      //SequenceFile.Reader reader = new SequenceFile.Reader(conf, SequenceFile.Reader.file(new Path("tmp")));
+      SequenceFile.Reader reader = new SequenceFile.Reader(FileSystem.get(conf), new Path("tmp"), conf); //Author JKG
 
       ArrayListOfIntsWritable key = (ArrayListOfIntsWritable) reader.getKeyClass().newInstance();
       IntWritable value = (IntWritable) reader.getValueClass().newInstance();

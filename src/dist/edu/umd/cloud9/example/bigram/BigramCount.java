@@ -136,7 +136,7 @@ public class BigramCount extends Configured implements Tool {
     LOG.info(" - output path: " + outputPath);
     LOG.info(" - num reducers: " + reduceTasks);
 
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJobName(BigramCount.class.getSimpleName());
     job.setJarByClass(BigramCount.class);
 

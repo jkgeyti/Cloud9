@@ -188,7 +188,7 @@ public class WikipediaDocnoMappingBuilder extends Configured implements Tool, Do
     LOG.info(" - keep all pages: " + keepAll);
     LOG.info(" - language: " + language);
 
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJarByClass(WikipediaDocnoMappingBuilder.class);
     job.setJobName(String.format("BuildWikipediaDocnoMapping[%s: %s, %s: %s, %s: %s]", INPUT_OPTION,
         inputPath, OUTPUT_FILE_OPTION, outputFile, LANGUAGE_OPTION, language));

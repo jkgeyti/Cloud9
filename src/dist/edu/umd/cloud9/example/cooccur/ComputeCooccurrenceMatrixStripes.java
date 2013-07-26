@@ -178,7 +178,7 @@ public class ComputeCooccurrenceMatrixStripes extends Configured implements Tool
     LOG.info(" - window: " + window);
     LOG.info(" - number of reducers: " + reduceTasks);
 
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJobName(ComputeCooccurrenceMatrixStripes.class.getSimpleName());
     job.setJarByClass(ComputeCooccurrenceMatrixStripes.class);
 

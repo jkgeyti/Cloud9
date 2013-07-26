@@ -453,7 +453,7 @@ public class RunPageRankBasic extends Configured implements Tool {
 
   private float phase1(int i, int j, String basePath, int numNodes,
       boolean useCombiner, boolean useInMapperCombiner) throws Exception {
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJobName("PageRank:Basic:iteration" + j + ":Phase1");
     job.setJarByClass(RunPageRankBasic.class);
 
@@ -526,7 +526,7 @@ public class RunPageRankBasic extends Configured implements Tool {
   }
 
   private void phase2(int i, int j, float missing, String basePath, int numNodes) throws Exception {
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJobName("PageRank:Basic:iteration" + j + ":Phase2");
     job.setJarByClass(RunPageRankBasic.class);
 

@@ -54,7 +54,9 @@ public class BooleanRetrieval extends Configured implements Tool {
   private BooleanRetrieval() {}
 
   private void initialize(String indexPath, String collectionPath, FileSystem fs) throws IOException {
-    index = new MapFile.Reader(new Path(indexPath + "/part-r-00000"), fs.getConf());
+    //index = new MapFile.Reader(new Path(indexPath + "/part-r-00000"), fs.getConf());
+    index = new MapFile.Reader(fs, indexPath + "/part-r-00000", fs.getConf()); //Author JKG
+
     collection = fs.open(new Path(collectionPath));
     stack = new Stack<Set<Integer>>();
   }

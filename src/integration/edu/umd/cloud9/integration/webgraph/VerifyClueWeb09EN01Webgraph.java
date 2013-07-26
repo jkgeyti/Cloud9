@@ -107,8 +107,13 @@ public class VerifyClueWeb09EN01Webgraph {
     IntWritable key = new IntWritable();
     ArrayListWritable<AnchorText> value = new ArrayListWritable<AnchorText>();
 
-    reader = new SequenceFile.Reader(fs.getConf(), SequenceFile.Reader.file(
-        new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEBGRAPH + "/part-00000")));
+    //reader = new SequenceFile.Reader(fs.getConf(), SequenceFile.Reader.file(
+    //    new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEBGRAPH + "/part-00000")));
+    reader = new SequenceFile.Reader(fs,
+            new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEBGRAPH + "/part-00000"),
+            fs.getConf()); //Author JKG
+
+
     reader.next(key, value); //read key 200
     verifyURLs(200, urlMap, value);
     verifyLinks(200, AnchorTextConstants.Type.INTERNAL_OUT_LINK.val, internalLinkMap, value);
@@ -120,8 +125,12 @@ public class VerifyClueWeb09EN01Webgraph {
     verifyLinks(600, AnchorTextConstants.Type.EXTERNAL_OUT_LINK.val, externalLinkMap, value);
     reader.close();
 
-    reader = new SequenceFile.Reader(fs.getConf(), SequenceFile.Reader.file(
-        new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEBGRAPH + "/part-00010")));
+    //reader = new SequenceFile.Reader(fs.getConf(), SequenceFile.Reader.file(
+    //    new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEBGRAPH + "/part-00010")));
+    reader = new SequenceFile.Reader(fs,
+              new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEBGRAPH + "/part-00010"),
+              fs.getConf()); //Author JKG
+
     reader.next(key, value); //read key 10
     verifyURLs(10, urlMap, value);
     verifyLinks(10, AnchorTextConstants.Type.INTERNAL_OUT_LINK.val, internalLinkMap, value);

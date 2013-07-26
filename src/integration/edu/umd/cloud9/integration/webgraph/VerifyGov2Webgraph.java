@@ -110,16 +110,22 @@ public class VerifyGov2Webgraph {
     IntWritable key = new IntWritable();
     ArrayListWritable<AnchorText> value = new ArrayListWritable<AnchorText>();
 
-    reader = new SequenceFile.Reader(fs.getConf(), SequenceFile.Reader.file(
-        new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEGIHTED_REVERSE_WEBGRAPH + "/part-00000")));
+    /*reader = new SequenceFile.Reader(fs.getConf(), SequenceFile.Reader.file(
+        new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEGIHTED_REVERSE_WEBGRAPH + "/part-00000")));*/
+
+    reader = new SequenceFile.Reader(fs, new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEGIHTED_REVERSE_WEBGRAPH + "/part-00000"), fs.getConf()); //Author JKG
+
     reader.next(key, value);
     reader.next(key, value);
     verifyWeights(anchorList1, value);
     verifySources(anchorSources1, value);
     reader.close();
 
-    reader = new SequenceFile.Reader(fs.getConf(), SequenceFile.Reader.file(
-        new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEGIHTED_REVERSE_WEBGRAPH + "/part-00010")));
+    /*reader = new SequenceFile.Reader(fs.getConf(), SequenceFile.Reader.file(
+        new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEGIHTED_REVERSE_WEBGRAPH + "/part-00010")));*/
+
+    reader = new SequenceFile.Reader(fs, new Path(collectionOutput + "/" + DriverUtil.OUTPUT_WEGIHTED_REVERSE_WEBGRAPH + "/part-00010"), fs.getConf()); //Author JKG
+
     reader.next(key, value);
     reader.next(key, value);
     verifyWeights(anchorList2, value);

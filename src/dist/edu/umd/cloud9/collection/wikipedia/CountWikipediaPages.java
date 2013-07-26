@@ -123,7 +123,7 @@ public class CountWikipediaPages extends Configured implements Tool {
     LOG.info(" - XML dump file: " + inputPath);
     LOG.info(" - language: " + language);
     
-    Job job = Job.getInstance(getConf());
+    Job job = new Job(getConf());
     job.setJarByClass(CountWikipediaPages.class);
     job.setJobName(String.format("CountWikipediaPages[%s: %s, %s: %s]", INPUT_OPTION, inputPath,
         LANGUAGE_OPTION, language));

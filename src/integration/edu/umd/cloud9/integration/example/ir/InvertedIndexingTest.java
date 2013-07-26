@@ -45,7 +45,8 @@ public class InvertedIndexingTest {
 
     IntegrationUtils.exec(Joiner.on(" ").join(args));
 
-    MapFile.Reader reader = new MapFile.Reader(new Path(tmpPrefix + "/part-r-00000"), conf);
+    //MapFile.Reader reader = new MapFile.Reader(new Path(tmpPrefix + "/part-r-00000"), conf);
+    MapFile.Reader reader = new MapFile.Reader(fs, tmpPrefix + "/part-r-00000", conf); //Author JKG
 
     Text key = new Text();
     PairOfWritables<IntWritable, ArrayListWritable<PairOfInts>> value =

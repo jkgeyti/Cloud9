@@ -463,7 +463,9 @@ public class HadoopAlign {
       FileStatus[] status = fileSys.listStatus(outputPath);
       for (int i=0; i<status.length; i++){
         sLogger.info("Reading " + status[i].getPath() + ", exists? " + fileSys.exists(status[i].getPath()));
-        SequenceFile.Reader reader = new SequenceFile.Reader(xjob, SequenceFile.Reader.file(status[i].getPath()));
+        //SequenceFile.Reader reader = new SequenceFile.Reader(xjob, SequenceFile.Reader.file(status[i].getPath()));
+        SequenceFile.Reader reader = new SequenceFile.Reader(fileSys, status[i].getPath(), xjob); //Author JKG
+
         while (reader.next(k, t)){
           if (t.getType() == PartialCountContainer.CONTENT_ARRAY) {
             tt.set(k.get(), (IndexedFloatArray)t.getContent());

@@ -10,3 +10,16 @@ data/bible+shakes.nopunc.tuple2.packed
 test/*
 pom.xml.asc
 *~
+.name
+ant.xml
+compiler.xml
+profiles_settings.xml
+encodings.xml
+lib.xml
+misc.xml
+modules.xml
+scope_settings.xml
+uiDesigner.xml
+vcs.xml
+workspace.xml
+umd-hadoop-core.iml

@@ -272,7 +272,7 @@ public class IterateGMM extends Configured implements Tool {
       LOG.info("** iterations: "+iterations);
       try{
 
-        Job job = Job.getInstance(conf);
+        Job job = new Job(conf);
         job.setJobName(IterateGMM.class.getSimpleName());
         job.setJarByClass(IterateGMM.class);
         // set the path of the information of k clusters in this iteration

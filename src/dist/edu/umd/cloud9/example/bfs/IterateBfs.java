@@ -224,7 +224,8 @@ public class IterateBfs extends Configured implements Tool {
 
     getConf().set("mapred.child.java.opts", "-Xmx2048m");
 
-    Job job = Job.getInstance(getConf());
+    //Job job = new Job(getConf());
+    Job job = new Job(getConf()); //Author JKG
     job.setJobName(String.format("IterateBfs[%s: %s, %s: %s, %s: %d]", INPUT_OPTION,
         inputPath, OUTPUT_OPTION, outputPath, NUM_PARTITIONS_OPTION, n));
     job.setJarByClass(EncodeBfsGraph.class);

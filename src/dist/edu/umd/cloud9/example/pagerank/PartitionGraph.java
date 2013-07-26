@@ -116,7 +116,7 @@ public class PartitionGraph extends Configured implements Tool {
 		Configuration conf = getConf();
 		conf.setInt("NodeCount", nodeCount);
 
-		Job job = Job.getInstance(conf);
+		Job job = new Job(conf); //Job.getInstance(conf); Author JKG
 		job.setJobName(PartitionGraph.class.getSimpleName() + ":" + inPath);
 		job.setJarByClass(PartitionGraph.class);
 

@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.SequenceFile;
@@ -42,7 +43,8 @@ public class ScanBlockCompressedSequenceFile {
 
     Path path = new Path(args[0]);
     Configuration config = new Configuration();
-    SequenceFile.Reader reader = new SequenceFile.Reader(config, SequenceFile.Reader.file(path));
+    //SequenceFile.Reader reader = new SequenceFile.Reader(config, SequenceFile.Reader.file(path));
+    SequenceFile.Reader reader = new SequenceFile.Reader (FileSystem.get(config), path, config); //Author JKG
 
     IntWritable key = new IntWritable();
     ClueWarcRecord value = new ClueWarcRecord();
@@ -69,7 +71,8 @@ public class ScanBlockCompressedSequenceFile {
 
     reader.close();
 
-    reader = new SequenceFile.Reader(config, SequenceFile.Reader.file(path));
+    //reader = new SequenceFile.Reader(config, SequenceFile.Reader.file(path));
+    reader = new SequenceFile.Reader (FileSystem.get(config), path, config); //Author JKG
 
     for (long p : seekPoints) {
       reader.seek(p);

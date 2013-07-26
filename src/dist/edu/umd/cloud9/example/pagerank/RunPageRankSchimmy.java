@@ -254,7 +254,9 @@ public class RunPageRankSchimmy extends Configured implements Tool {
 
       // Try and open the node structures...
       try {
-        reader = new SequenceFile.Reader(conf, SequenceFile.Reader.file(new Path(f)));
+        //reader = new SequenceFile.Reader(conf, SequenceFile.Reader.file(new Path(f)));
+        reader = new SequenceFile.Reader(FileSystem.get(conf), new Path(f), conf); //Author JKG
+
       } catch (IOException e) {
         throw new RuntimeException("Couldn't open " + f + " for partno: " + partno + " within: "
             + taskId);
@@ -554,8 +556,10 @@ public class RunPageRankSchimmy extends Configured implements Tool {
         continue;
       }
 
-      SequenceFile.Reader reader =
-          new SequenceFile.Reader(conf, SequenceFile.Reader.file(f.getPath()));
+      /*SequenceFile.Reader reader =
+          new SequenceFile.Reader(conf, SequenceFile.Reader.file(f.getPath()));*/
+
+      SequenceFile.Reader reader = new SequenceFile.Reader(FileSystem.get(conf), f.getPath(), conf); //Author JKG
 
       reader.next(key, value);
       int np = p.getPartition(key, value, numPartitions);
@@ -589,7 +593,7 @@ public class RunPageRankSchimmy extends Configured implements Tool {
     conf.setBoolean("mapred.map.tasks.speculative.execution", false);
     conf.setBoolean("mapred.reduce.tasks.speculative.execution", false);
 
-    Job job = Job.getInstance(conf);
+    Job job = new Job(conf);
     job.setJobName("PageRankSchimmy:iteration" + j + ":Phase1");
     job.setJarByClass(RunPageRankSchimmy.class);
 
@@ -653,7 +657,7 @@ public class RunPageRankSchimmy extends Configured implements Tool {
     LOG.info(" - input: " + in);
     LOG.info(" - output: " + out);
 
-    Job job = Job.getInstance(conf);
+    Job job = new Job(conf);
     job.setJobName("PageRankSchimmy:iteration" + j + ":Phase2");
     job.setJarByClass(RunPageRankSchimmy.class);
     job.setNumReduceTasks(0);

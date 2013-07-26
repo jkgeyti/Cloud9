@@ -51,7 +51,7 @@ public class DemoMapreduceNullInput {
    */
   public static void main(String[] args)
       throws IOException, InterruptedException, ClassNotFoundException {
-    Job job = Job.getInstance(new Configuration());
+    Job job = new Job(new Configuration()); //Job.getInstance(new Configuration()); //Author JKG
     job.setJobName(DemoMapreduceNullInput.class.getSimpleName());
     job.setJarByClass(DemoMapreduceNullInput.class);
 

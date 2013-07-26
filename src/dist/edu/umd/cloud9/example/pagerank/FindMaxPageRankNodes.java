@@ -167,7 +167,7 @@ public class FindMaxPageRankNodes extends Configured implements Tool {
     conf.setInt("mapred.min.split.size", 1024 * 1024 * 1024);
     conf.setInt("n", n);
 
-    Job job = Job.getInstance(conf);
+    Job job = new Job(conf);
     job.setJobName(FindMaxPageRankNodes.class.getName() + ":" + inputPath);
     job.setJarByClass(FindMaxPageRankNodes.class);
 

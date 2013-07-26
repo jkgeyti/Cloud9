@@ -92,7 +92,8 @@ public class LookupPostings extends Configured implements Tool {
 
     Configuration config = new Configuration();
     FileSystem fs = FileSystem.get(config);
-    MapFile.Reader reader = new MapFile.Reader(new Path(indexPath + "/part-r-00000"), config);
+    //MapFile.Reader reader = new MapFile.Reader(new Path(indexPath + "/part-r-00000"), config);
+    MapFile.Reader reader = new MapFile.Reader(fs, indexPath + "/part-r-00000", config); //Author JKG
 
     FSDataInputStream collection = fs.open(new Path(collectionPath));
     BufferedReader d = new BufferedReader(new InputStreamReader(collection));
